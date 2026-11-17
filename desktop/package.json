@@ -1,0 +1,58 @@
+{
+  "name": "rumo-ao-poder",
+  "productName": "Rumo ao Poder",
+  "version": "1.0.0",
+  "description": "Simulador eleitoral 2D — de vereador a presidente.",
+  "main": "main.js",
+  "author": "Rumo ao Poder",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "icon": "electron tools/render-icon.js",
+    "dist": "electron-builder --win nsis portable --x64"
+  },
+  "build": {
+    "appId": "br.rumoaopoder.jogo",
+    "productName": "Rumo ao Poder",
+    "copyright": "Rumo ao Poder",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "app/**/*",
+      "build/icon.png"
+    ],
+    "asar": true,
+    "compression": "maximum",
+    "win": {
+      "icon": "build/icon.png",
+      "artifactName": "RumoAoPoder-${version}-${arch}.${ext}",
+      "signAndEditExecutable": true
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": "always",
+      "createStartMenuShortcut": true,
+      "shortcutName": "Rumo ao Poder",
+      "artifactName": "RumoAoPoder-Setup.${ext}",
+      "installerIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico",
+      "installerHeaderIcon": "build/icon.ico",
+      "runAfterFinish": true,
+      "language": "1046"
+    },
+    "portable": {
+      "artifactName": "RumoAoPoder-Portable.${ext}"
+    }
+  },
+  "devDependencies": {
+    "electron": "^33.4.11",
+    "electron-builder": "^25.1.8"
+  }
+}
